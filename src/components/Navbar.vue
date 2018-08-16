@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <div class="nav-link">Blog app</div>
+              <div class="nav-link"><strong>Blog app</strong></div>
             </li>
             <li class="nav-item active">
               <router-link class="nav-link" to="/posts">Posts</router-link>
@@ -17,7 +17,7 @@
 
 <style>
 nav div {
-  background-color: rgb(207, 58, 58);
+  background-color: rgb(245, 245, 106);
 }
 
 </style>
