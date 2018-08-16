@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Posts from './components/Posts.vue'
+import AppPosts from './containers/AppPosts.vue'
 
 Vue.use(Router)
 
@@ -9,7 +9,7 @@ export default new Router({
     
     routes: [
         { path: '/', redirect: 'posts'},
-        { path: '/posts', component: Posts},
+        { path: '/posts', component: AppPosts},
 
     ]
 
