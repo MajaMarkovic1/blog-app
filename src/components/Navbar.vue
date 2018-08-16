@@ -9,6 +9,9 @@
             <li class="nav-item active">
               <router-link class="nav-link" to="/posts">Posts</router-link>
             </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/add">Add</router-link>
+            </li>
           </ul>
         </div>
       </nav>

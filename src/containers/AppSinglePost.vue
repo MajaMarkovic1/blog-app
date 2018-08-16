@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <SinglePost :post="post"/>
     </div>
 </template>
