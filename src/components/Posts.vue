@@ -30,5 +30,7 @@ export default {
 <style>
  .list-group-item {
      font-size: 1.5rem;
+     display: flex;
+     justify-content: space-between
  }
 </style>

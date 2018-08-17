@@ -1,30 +1,20 @@
 <template>
-    <div class="container">
-        <form id="form">
+    <div v-if="post" class="container">
+         <form @submit.prevent="onSubmit" class="jumbotron">
           <div class="form-group row">
-            <label for="brand" class="col-4 col-form-label">Title</label>
+            <label class="col-4 col-form-label" for="title">Title</label> 
             <div class="col-8">
-              <div class="input-group">
-                <input id="title" name="title" type="text" class="form-control here" 
-                     v-model="post.title">
-              </div>
+              <input id="title" name="title" type="text" class="form-control here" v-model="post.title">
             </div>
           </div>
-
           <div class="form-group row">
-            <label for="model" class="col-4 col-form-label">Text</label>
+            <label for="text" class="col-4 col-form-label">Text</label> 
             <div class="col-8">
-              <div class="input-group">
-                <input id="text" name="text" type="text" class="form-control here" 
-                    v-model="post.text">
-              </div>
+              <input id="text" name="text" type="text" class="form-control here" v-model="post.text">
             </div>
           </div>
-          <div class="form-group row">
-            <div class="offset-4 col-8">
-              <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
+          <button type="submit" class="btn">Submit</button>
+          
         </form>
     </div>
 </template>
@@ -32,9 +22,17 @@
 <script>
 
 export default {
-    props: {
-        post: Object
+    data(){
+      return {
+        post: {}
+      }
     },
-    
+
+    methods: {
+      onSubmit(){
+        this.$emit('addPost', this.post)
+
+      }
+    }
 }
 </script>

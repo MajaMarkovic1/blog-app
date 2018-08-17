@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <AddPost />
+        <AddPost @addPost="onSubmit"/>
     </div>
 </template>
 
@@ -13,9 +13,14 @@ export default {
     components: {
         AddPost
     },
-    data(){
-        return {
-
+    methods: {
+        onSubmit(post){
+            posts
+            .add(post)
+            .then(response => {
+                this.$router.push('/posts')
+            })
+            .catch(err => console.log(err))
         }
     }
     
