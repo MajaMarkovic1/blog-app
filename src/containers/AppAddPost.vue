@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <AddPost @addPost="onSubmit"/>
+        <AddPost :post="post" @onSubmit="onSubmit" @reset="reset"/>
     </div>
 </template>
 
@@ -13,14 +13,43 @@ export default {
     components: {
         AddPost
     },
+    data(){
+      return {
+        post: {}
+      }
+    },
+       created(){
+            if(this.$route.params.id){
+                posts
+                .get(this.$route.params.id)
+                .then(response => {
+                    this.post = response.data
+                })
+            }
+        },
+    
     methods: {
-        onSubmit(post){
+        onSubmit(){
+           this.$route.params.id ? this.edit() : this.add()
+        },
+        add(){
             posts
-            .add(post)
+            .add(this.post)
             .then(response => {
                 this.$router.push('/posts')
             })
             .catch(err => console.log(err))
+        },
+        edit(){
+            posts
+            .edit(this.post)
+            .then(response => {
+                this.$router.push('/posts')
+            })
+            .catch(err => console.log(err))
+        },
+        reset(){
+            this.post = {}
         }
     }
     

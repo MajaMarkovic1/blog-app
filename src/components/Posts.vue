@@ -4,12 +4,18 @@
             v-for="post in posts" :key="post.id">
             <li class="list-group-item">
                 {{ post.title }}
-                <router-link 
-                    :to="{ name: 'single-post', params: { id: post.id } }" 
-                    class="btn btn-success">
-                    View post
-                </router-link>
-                
+                <div>
+                    <router-link 
+                        :to="{ name: 'single-post', params: { id: post.id } }" 
+                        class="btn btn-success">
+                        View post
+                    </router-link>
+                    <router-link 
+                        :to="{ name: 'edit-post', params: { id: post.id } }" 
+                        class="btn btn-primary">
+                        Edit
+                    </router-link>
+                </div>
             </li>
         </ul>
     </div>

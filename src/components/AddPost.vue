@@ -20,6 +20,7 @@
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
+        <button  type="submit" class="btn btn-danger">Edit</button>
       
     </form>
     </div>
@@ -28,21 +29,29 @@
 <script>
 
 export default {
-    data(){
-      return {
-        post: {}
-      }
+    props: {
+      post: Object
     },
-
+ 
     methods: {
       onSubmit()
-        {this.$validator.validateAll()
+        {
+          this.$validator.validateAll()
             .then(() => {
-              this.$emit('addPost', this.post)  
+              this.$emit('onSubmit')
+
           })
       },
+      add(post){
+        this.$emit('addPost')  
+
+      },
+    edit(post){
+        this.$emit('editPost', this.post)  
+      
+    },
       reset(){
-        this.post = {}
+        this.$emit('reset')
       }
     }
 }
