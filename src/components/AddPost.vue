@@ -1,23 +1,27 @@
 <template>
     <div v-if="post" class="container">
       <h1>Add post</h1>
-         <form @submit.prevent="onSubmit" @reset="reset" class="jumbotron">
-          <div class="form-group row">
-            <label class="col-4 col-form-label" for="title">Title</label> 
-            <div class="col-8">
-              <input id="title" name="title" type="text" class="form-control here" v-model="post.title">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="text" class="col-4 col-form-label">Text</label> 
-            <div class="col-8">
-              <input id="text" name="text" type="text" class="form-control here" v-model="post.text">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-          <button type="reset" class="btn btn-danger">Reset</button>
+      <form @submit.prevent="onSubmit" @reset="reset">
+        <div class="form-group row">
+          <label class="col-4 col-form-label" for="title">Title</label> 
+          <div class="col-8">
+            <input v-validate="'required|min:2'" id="title" name="title" type="text" class="form-control here" v-model="post.title">
+          <div v-show="errors.has('title')" class="alert alert-warning">{{ errors.first("title")}}</div>
           
-        </form>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="text" class="col-4 col-form-label">Text</label> 
+          <div class="col-8">
+            <textarea v-validate="'required|max:300'" rows="5" id="text" name="text" type="text" class="form-control here" v-model="post.text"></textarea>
+          <div v-show="errors.has('text')" class="alert alert-warning">{{ errors.first("text")}}</div>
+          
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+      
+    </form>
     </div>
 </template>
 
@@ -31,9 +35,11 @@ export default {
     },
 
     methods: {
-      onSubmit(){
-        this.$emit('addPost', this.post)
-
+      onSubmit()
+        {this.$validator.validateAll()
+            .then(() => {
+              this.$emit('addPost', this.post)  
+          })
       },
       reset(){
         this.post = {}
@@ -41,3 +47,9 @@ export default {
     }
 }
 </script>
+
+<style>
+form {
+  margin-top: 1rem;
+}
+</style>
