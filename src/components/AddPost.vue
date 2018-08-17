@@ -1,6 +1,7 @@
 <template>
     <div v-if="post" class="container">
-         <form @submit.prevent="onSubmit" class="jumbotron">
+      <h1>Add post</h1>
+         <form @submit.prevent="onSubmit" @reset="reset" class="jumbotron">
           <div class="form-group row">
             <label class="col-4 col-form-label" for="title">Title</label> 
             <div class="col-8">
@@ -13,7 +14,8 @@
               <input id="text" name="text" type="text" class="form-control here" v-model="post.text">
             </div>
           </div>
-          <button type="submit" class="btn">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="reset" class="btn btn-danger">Reset</button>
           
         </form>
     </div>
@@ -32,6 +34,9 @@ export default {
       onSubmit(){
         this.$emit('addPost', this.post)
 
+      },
+      reset(){
+        this.post = {}
       }
     }
 }
