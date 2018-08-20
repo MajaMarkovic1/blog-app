@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Posts :posts="posts"/>
+        <Posts :posts="posts" @deletePost="deletePost"/>
     </div>
 </template>
 
@@ -34,6 +34,17 @@ export default {
         })
     },
    
+    methods: {
+        deletePost(post){
+            posts
+            .delete(post.id)
+            .then(response => {
+                let postIndex = this.posts.findIndex(p => p.id === post.id)
+                this.posts.splice(postIndex, 1)
+            })
+            .catch(err => console.log(err))
+        }
+    }
 
 
 }

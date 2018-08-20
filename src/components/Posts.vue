@@ -4,7 +4,7 @@
             v-for="post in posts" :key="post.id">
             <li class="list-group-item">
                 {{ post.title }}
-                <div>
+                <div id="buttons">
                     <router-link 
                         :to="{ name: 'single-post', params: { id: post.id } }" 
                         class="btn btn-success">
@@ -15,6 +15,7 @@
                         class="btn btn-primary">
                         Edit
                     </router-link>
+                    <button class="btn btn-danger" @click="deletePost(post)">Delete</button>
                 </div>
             </li>
         </ul>
@@ -26,6 +27,12 @@
 export default {
     props: {
         posts: Array,
+    },
+
+    methods: {
+        deletePost(post){
+            this.$emit('deletePost', post)
+        }
     }
 
 
@@ -38,5 +45,8 @@ export default {
      font-size: 1.5rem;
      display: flex;
      justify-content: space-between
+ }
+.btn {
+     margin-right: 0.5rem;
  }
 </style>
