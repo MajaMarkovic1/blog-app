@@ -18,15 +18,15 @@ export default {
         post: {}
       }
     },
-       created(){
-            if(this.$route.params.id){
-                posts
-                .get(this.$route.params.id)
-                .then(response => {
-                    this.post = response.data
-                })
-            }
-        },
+    created(){
+        if(this.$route.params.id){
+            posts
+            .get(this.$route.params.id)
+            .then(response => {
+                this.post = response.data
+            })
+        }
+    },
     
     methods: {
         onSubmit(){

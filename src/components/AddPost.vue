@@ -20,7 +20,6 @@
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
-        <button  type="submit" class="btn btn-danger">Edit</button>
       
     </form>
     </div>
@@ -34,22 +33,9 @@ export default {
     },
  
     methods: {
-      onSubmit()
-        {
-          this.$validator.validateAll()
-            .then(() => {
-              this.$emit('onSubmit')
-
-          })
+      onSubmit(){
+          this.$emit('onSubmit')    
       },
-      add(post){
-        this.$emit('addPost')  
-
-      },
-    edit(post){
-        this.$emit('editPost', this.post)  
-      
-    },
       reset(){
         this.$emit('reset')
       }
