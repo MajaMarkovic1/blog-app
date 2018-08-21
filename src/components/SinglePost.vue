@@ -54,17 +54,7 @@ export default {
             return this.post.comments ? this.post.comments.reverse() : []
         }
     },
-    beforeRouteEnter (to, from, next) {
-        posts
-        .get(to.params.id)
-        .then(response => {
-            next((vm) => {
-                vm.post = response.data
-                
-            })
-        })
-
-    }
+  
     
 
     
