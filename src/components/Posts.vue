@@ -3,7 +3,10 @@
         <ul class="list-group list-group-flush"
             v-for="post in posts" :key="post.id">
             <li class="list-group-item">
-                {{ post.title }}
+                <div>
+                    <div>{{ post.title }}</div>
+                    <div class="createdAt">{{ post.createdAt | formatDate }}</div>
+                </div>
                 <div id="buttons">
                     <router-link 
                         :to="{ name: 'single-post', params: { id: post.id } }" 
@@ -23,12 +26,13 @@
 </template>
 
 <script>
+import { DateMixin } from '../mixins'
 
 export default {
     props: {
         posts: Array,
     },
-
+    mixins: [ DateMixin ],
     methods: {
         deletePost(post){
             this.$emit('deletePost', post)
@@ -48,5 +52,9 @@ export default {
  }
 .btn {
      margin-right: 0.5rem;
+ }
+ .createdAt {
+     font-style: italic;
+     font-size: 0.8rem;
  }
 </style>

@@ -20,6 +20,7 @@ export default {
 
         }
     },
+    
 
     beforeRouteEnter(to, from, next){
         posts
