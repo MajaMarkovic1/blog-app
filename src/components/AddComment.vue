@@ -3,19 +3,16 @@
     <h5>Add comment</h5>
     <form @submit.prevent="onSubmit">
       <div class="form-group">
-        <div class="col-sm-6">
+        <div>
           <textarea id="text" name="text" class="form-control here" v-model="comment.text" required="required"></textarea>
         </div>
         <captcha 
           @verify="verify"
           @expired="expired"
           ref="captcha"/>
-      <button name="submit" type="submit" class="btn btn-primary" :disabled="!captchaPassed">Submit</button>
+        <button name="submit" type="submit" class="btn btn-primary" :disabled="!captchaPassed">Submit</button>
       </div>
-      
-  
     </form>
-    
   </div>
 </template>
 
@@ -53,3 +50,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

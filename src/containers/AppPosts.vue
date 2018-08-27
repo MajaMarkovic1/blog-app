@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Posts :count="count" :posts="posts" @deletePost="deletePost" @select="select"/>
+        <Posts :count="count" v-for="(post, index) in posts" :key="post.id" :index="index" :post="post" :suggested="suggested" @deletePost="deletePost" @select="select"/>
     </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
         return {
             posts: [],
             count: 0,
+            suggested: false
         }
     },
     
@@ -36,20 +37,20 @@ export default {
     },
    
     methods: {
-        deletePost(post){
+        deletePost(data){
             posts
-            .delete(post.id)
+            .delete(data.id)
             .then(response => {
-                let postIndex = this.posts.findIndex(p => p.id === post.id)
-                this.posts.splice(postIndex, 1)
+                this.posts.splice(data.index, 1)
             })
             .catch(err => console.log(err))
+    
         },
         select(post){
             this.count++
-            post.selected ? post.selected = false : post.selected = true
             
-        }
+        },
+       
     }
 
 
