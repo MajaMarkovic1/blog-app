@@ -22,7 +22,8 @@ export default {
             post: {
                 title: '',
                 text: '',
-                createdAt: ''
+                createdAt: '',
+                selected: false
             }
         }
     },
@@ -52,7 +53,9 @@ export default {
     computed: {
         comments () {
             return this.post.comments ? this.post.comments.reverse() : []
-        }
+        },
+        
+
     },
   
     

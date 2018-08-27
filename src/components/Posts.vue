@@ -1,8 +1,10 @@
 <template>
     <div  class="container">
-        <ul class="list-group list-group-flush"
-            v-for="post in posts" :key="post.id">
-            <li class="list-group-item">
+        <div>You selected {{ count }} posts</div>
+        <ul
+            v-for="post in posts" :key="post.id"
+             >
+            <li class="list-group-item" :class="{ red: post.selected }"> 
                 <div>
                     <div>{{ post.title }}</div>
                     <div class="createdAt">{{ post.createdAt | formatDate }}</div>
@@ -19,6 +21,8 @@
                         Edit
                     </router-link>
                     <button class="btn btn-danger" @click="deletePost(post)">Delete</button>
+                    <button class="btn btn-danger" @click="select(post)">Select</button>
+                    
                 </div>
             </li>
         </ul>
@@ -31,11 +35,16 @@ import { DateMixin } from '../mixins'
 export default {
     props: {
         posts: Array,
+        count: Number,
     },
     mixins: [ DateMixin ],
     methods: {
         deletePost(post){
             this.$emit('deletePost', post)
+        },
+        select(post){
+            this.$emit('select', post)
+            
         }
     }
 
@@ -56,5 +65,8 @@ export default {
  .createdAt {
      font-style: italic;
      font-size: 0.8rem;
+ }
+ .red {
+     background-color: grey
  }
 </style>

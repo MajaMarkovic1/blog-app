@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Posts :posts="posts" @deletePost="deletePost"/>
+        <Posts :count="count" :posts="posts" @deletePost="deletePost" @select="select"/>
     </div>
 </template>
 
@@ -16,8 +16,8 @@ export default {
     },
     data(){
         return {
-            posts: []
-
+            posts: [],
+            count: 0,
         }
     },
     
@@ -44,6 +44,11 @@ export default {
                 this.posts.splice(postIndex, 1)
             })
             .catch(err => console.log(err))
+        },
+        select(post){
+            this.count++
+            post.selected ? post.selected = false : post.selected = true
+            
         }
     }
 
