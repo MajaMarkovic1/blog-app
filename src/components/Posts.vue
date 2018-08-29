@@ -13,7 +13,7 @@
                         View post
                     </router-link>
                     <router-link 
-                        v-if="!suggested"
+                        
                         :to="{ name: 'edit-post', params: { id: post.id } }" 
                         class="btn btn-primary">
                         Edit

@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <AddPost :post="post" @onSubmit="onSubmit" @reset="reset"/>
+        
     </div>
 </template>
 
@@ -55,3 +56,10 @@ export default {
     
 }
 </script>
+
+<style>
+
+.container {
+    margin-top: 1rem;
+}
+</style>

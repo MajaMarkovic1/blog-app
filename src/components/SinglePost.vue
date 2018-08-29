@@ -2,12 +2,12 @@
     <div v-if="post" class="container">
         <div class="card" style="width: 100%;">
             <div><strong>Title:</strong><br> {{ post.title }}</div><br>
-            <div><strong>Text:</strong><br> {{ post.text }}</div><br>
+            <div v-html="post.text"></div><br>
         </div>
         
         <div class="addAndSuggested">
             <add-comment class="card" style="width: 45%;" @commentAdded="addComment"></add-comment><br>
-            <div class="card" style="width: 45%;">
+            <div >
                 <h5>Suggested post:</h5>
                 <SuggestedPost :post="suggestedPost"/>
             </div>
